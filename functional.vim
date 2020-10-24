@@ -21,7 +21,6 @@ function! Reduce(fr, li) abort
     " Return the result of a reduction operation applied to a list.
     " Example:  Reduce({i, j -> i + j}, [1,2,3]), returns 6
     "           Reduce({i, j -> i . j}, ['hello ', 'world'], returns 'hello world'
-    "
     " Args:
     "   fr (Funcref): Funcref taking 2 input args
     "   li (list):
@@ -107,12 +106,10 @@ function! Sorted(li, kwargs = {'key':{i -> i}, 'reverse':0}) abort
     " Args:
     "   li (list):
     "   kwargs (dict): (optional)
-    "       kwargs["key"] (Funcref):
-    "           sort li according to order of Mapped(kwargs['key'], li)
+    "       kwargs["key"] (Funcref): A Funcref with a single input arg
     "       kwargs["reverse"] (0,1): 
     "           0 : default - sort ascending
     "           1 : sort descending
-    "
   
     " get a 'shadow' list of [[element, kwargs['key'](element)],..]
     let l:shadow_list = Zip(a:li, Map(a:kwargs['key'], a:li))
