@@ -84,8 +84,8 @@ function! Unzip(zipped_list) abort
     " ['a','b','c']]
 
     let l:unzipped = []
-    for element_index in range(len(zipped_list[0]))
-        call add(l:unzipped, Map({i -> i[element_index]}, zipped_list))         
+    for element_index in range(len(a:zipped_list[0]))
+        call add(l:unzipped, Map({i -> i[element_index]}, a:zipped_list))         
     endfor
 
     return l:unzipped
