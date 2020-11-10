@@ -1,0 +1,15 @@
+Map(Funcref, list)                                  *Map()*
+            Return a copy of list, with Funcref applied to each element
+
+            Example 1:
+
+                Map({i -> 2*i}, [1,2,3])
+                " returns [2,4,6]
+
+            Example 2:
+
+                function! Double(i) abort
+                    return 2*a:i
+                endfunction
+                Map(function('Double', [1,2,3])
+                " returns [2,4,6]
