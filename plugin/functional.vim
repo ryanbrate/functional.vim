@@ -1,9 +1,13 @@
-" ------
-" functional-style functions
-" ------
+" Vim plugin providing more functional-style wrapper functions
+" Last Change: 10 Nov 2020
+" By: Ryan Brate
+
+if exists('g:loaded_functional_vim') | finish | endif
+let g:loaded_functional_vim = 1
 
 function! Map(fr, li) abort
     " Return a copy of list, li, with fn applied to each element.
+    "
     " Example:
     "   Map(function("Some_function"), [1,2,3])
     "   Map({i -> 2*i}, [1,2,3])
@@ -19,6 +23,7 @@ endfunction
 
 function! Reduce(fr, li) abort
     " Return the result of a reduction operation applied to a list.
+    "
     " Example:  Reduce({i, j -> i + j}, [1,2,3]), returns 6
     "           Reduce({i, j -> i . j}, ['hello ', 'world'], returns 'hello world'
     " Args:
@@ -38,9 +43,9 @@ function! Reduce(fr, li) abort
     return l:reduced
 endfunction
 
-
 function! Filter(fr, li)
     " Return a list of only those elements for which fr(element) = 1 
+    "
     " Example:
     "   Filter({i -> i > 1}, [1,2,3])
     "   Filter(function("Some_func"), [1,2,3])
@@ -57,7 +62,6 @@ function! Filter(fr, li)
 
     return l:new_list
 endfunction
-
 
 function! Zip(...) abort
     " Return a list of tuples assembled from lists of the same size.
@@ -76,7 +80,6 @@ function! Zip(...) abort
     return  l:zipped
 endfunction
 
-
 function! Unzip(zipped_list) abort
     " Return list of unzipped lists.
     "
@@ -91,7 +94,6 @@ function! Unzip(zipped_list) abort
     return l:unzipped
 
 endfunction
-
 
 function! Sorted(li, kwargs = {'key':{i -> i}, 'reverse':0}) abort
     " Return a sorted list, sorted according to the order of corresponding list 
@@ -128,13 +130,15 @@ function! Sorted(li, kwargs = {'key':{i -> i}, 'reverse':0}) abort
     return Map({i->i[0]}, l:sorted_shadow_list)
 endfunction
 
-
 " ------
 " Miscellaneous useful functions to co-opt nicer way of programming vimscript
 " ------
 
 function! In(value, li) abort
     " Return 1 if value in list, li: Else return 0
+    " 
+    " Example:
+    "   In(4, [1,2,3]) -> yields 0
     for i in a:li
         if i == a:value
             return 1
