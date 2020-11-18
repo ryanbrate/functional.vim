@@ -1,5 +1,5 @@
 " Vim plugin providing more functional-style wrapper functions
-" Last Change: 10 Nov 2020
+" Last Change: 18 Nov 2020
 " By: Ryan Brate
 
 if exists('g:loaded_functional_vim') | finish | endif
@@ -147,3 +147,15 @@ function! In(value, li) abort
     return 0
 endfunction
 
+function! Enumerate(li, start=0) abort
+    " Return an enumerated list.
+    " E.g. Enumerate(['a', 'b'], 1) >> [[1, 'a'], [2, 'b']]
+    "
+    " Args:
+    "   li (list):
+    "   start (int): starting index
+    "
+    " Returns:
+    "   list of lists (see example)
+    return Zip(range(a:start, a:start + len(a:li) - 1), a:li)  
+endfunction
